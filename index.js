@@ -1,11 +1,11 @@
-const {SmartMoveRobot, SmartRobot, HubManager} = require('@powered-up/api');
+const {SmartMoveRobot, SmartRobot, HubManager, Device, SmartHub} = require('@powered-up/api');
 const {BLEManager}= require('@powered-up/ble');
 const {autorun} = require('mobx');
 const noble = require('noble');
 
 
-/*autorun(() => {
-    noble.on('stateChange', function(state) {
+autorun(() => {
+    /*noble.on('stateChange', function(state) {
         if (state === 'poweredOn') {
           noble.startScanning();
         } else {
@@ -17,17 +17,32 @@ const noble = require('noble');
           console.log('Found device with local name: ' + peripheral.advertisement.localName);
           console.log('advertising the following service uuid\'s: ' + peripheral.advertisement.serviceUuids);
           console.log();
-      });
-*/
+      });*/
 
-/*
     console.log("Starting");
     const hubManager = HubManager.getSingleton();
     hubManager.addHub("000016231212efde1623785feabcd123");
+    
 
-    console.log(hubManager.hubs);
+    //console.log(hubManager.hubs);
+    if(hubManager.hubs.length > 0) {
+        const smartRobot = new SmartHub(hubManager);
+        console.log(smartRobot);
+        if(smartRobot) {
+            console.log(smartRobot.motorA);
+            if(smartRobot.a) {
+                console.log(smartRobot.a);
+            }
+        }
+        /*let device = new Device(hubManager.hubs[0].a);
+        console.log(device);
+        if(!device.busy) {
+            
+            console.log(device.rawValue);
+        }*/
+    }
 
-});*/
+});
 
 /*const moveRobot = new SmartMoveRobot();
 
@@ -42,8 +57,8 @@ autorun(() => {
         motorA.runWithPower(100);
     }
 });
-*/
-/*const robot = new SmartRobot();
+
+const robot = new SmartRobot();
 
 autorun(() => {
     const {motorA} = robot;
@@ -57,7 +72,7 @@ autorun(() => {
         console.log("test");
     motorA.runWithPower(100);
     }
-});*/
+});
 const moveRobot = new SmartMoveRobot();
 
 autorun(() => {
@@ -77,4 +92,4 @@ autorun(() => {
 
     encodedMotorA.brake();
   }
-});
+});*/
